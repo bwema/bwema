@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hallo, willkommen auf meiner Website!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a365d;
+            --light-navy: #2d4a7c;
+            --soft-blue: #63b3ed;
+            --light-blue: #bee3f8;
+            --yellow: rgba(254, 240, 138, 0.15); /* Very transparent */
+            --light-yellow: rgba(254, 249, 195, 0.1); /* Even more transparent */
+            --dark-yellow: rgba(250, 204, 21, 0.25); /* Subtle for stripes */
+            --cream: rgba(254, 252, 191, 0.2);
+            --teal: #4fd1c7;
+            --light-teal: #b2f5ea;
+            --text-color: #2d3748;
+            --shadow: 0 4px 12px rgba(26, 54, 93, 0.1); /* Lighter shadow */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: var(--text-color);
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(var(--light-blue) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        /* Header and Navigation */
+        header {
+            background: linear-gradient(135deg, var(--navy), var(--light-navy));
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 8px dotted rgba(254, 240, 138, 0.3);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: white;
+            text-shadow: 3px 3px 0 var(--soft-blue);
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--light-blue);
+            font-weight: normal;
+            font-style: italic;
+        }
+        
+        nav {
+            margin-top: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .nav-button {
+            background-color: white;
+            color: var(--navy);
+            border: 2px solid var(--soft-blue);
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-family: 'Georgia', serif;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(26, 54, 93, 0.15);
+            background-color: rgba(254, 249, 195, 0.3);
+            border-color: rgba(250, 204, 21, 0.5);
+        }
+        
+        .nav-button.active {
+            background-color: rgba(254, 240, 138, 0.3);
+            color: var(--navy);
+            border-color: rgba(250, 204, 21, 0.5);
+            box-shadow: 0 6px 15px rgba(26, 54, 93, 0.1);
+        }
+        
+        /* Main content area */
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Page content styling */
+        .page-header {
+            background: rgba(254, 249, 195, 0.08); /* Very transparent */
+            padding: 30px;
+            border-radius: 25px;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow);
+            border: 5px solid rgba(254, 240, 138, 0.2);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px); /* Subtle blur for depth */
+        }
+        
+        /* Very subtle vertical yellow stripes */
+        .page-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 30px,
+                rgba(250, 204, 21, 0.05) 30px,
+                rgba(250, 204, 21, 0.05) 60px
+            );
+            z-index: 1;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+            font-weight: 700;
+        }
+        
+        .page-header p {
+            position: relative;
+            z-index: 2;
+            color: var(--light-navy);
+        }
+        
+        .kapitel {
+            font-size: 1.2rem;
+            color: var(--navy);
+            font-weight: bold;
+            background-color: rgba(254, 240, 138, 0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 6px rgba(26, 54, 93, 0.08);
+            border: 1px solid rgba(250, 204, 21, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-content {
+            background: rgba(254, 249, 195, 0.05); /* Almost transparent */
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            border: 3px solid rgba(254, 240, 138, 0.15);
+            margin-bottom: 35px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            position: relative;
+            backdrop-filter: blur(3px);
+        }
+        
+        /* Very subtle vertical yellow stripes */
+        .page-content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 40px,
+                rgba(250, 204, 21, 0.03) 40px,
+                rgba(250, 204, 21, 0.03) 80px
+            );
+            border-radius: 22px;
+            z-index: 1;
+        }
+        
+        .page-content > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .placeholder {
+            text-align: center;
+            padding: 50px 20px;
+            color: #4a5568;
+            font-style: italic;
+            background: rgba(254, 249, 195, 0.1);
+            border-radius: 20px;
+            border: 2px dashed rgba(250, 204, 21, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .placeholder i {
+            font-size: 3.5rem;
+            color: var(--soft-blue);
+            margin-bottom: 25px;
+            display: block;
+        }
+        
+        /* Decorative elements */
+        .decoration {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        
+        .star {
+            color: rgba(254, 240, 138, 0.5);
+            font-size: 24px;
+        }
+        
+        .moon {
+            color: var(--light-blue);
+            font-size: 28px;
+        }
+        
+        /* Image styles */
+        .cute-img {
+            max-width: 100%;
+            border-radius: 20px;
+            border: 6px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 25px rgba(26, 54, 93, 0.1);
+            margin: 25px 0;
+        }
+        
+        .small-img {
+            max-width: 300px;
+        }
+        
+        .medium-img {
+            max-width: 500px;
+        }
+        
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .image-caption {
+            font-style: italic;
+            color: var(--light-navy);
+            margin-top: 10px;
+            font-size: 1.1rem;
+            font-family: 'Georgia', serif;
+        }
+        
+        /* Image gallery */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .gallery-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 18px;
+            border: 3px solid rgba(254, 240, 138, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(26, 54, 93, 0.08);
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .gallery-img:hover {
+            transform: scale(1.05);
+            border-color: rgba(250, 204, 21, 0.5);
+            box-shadow: 0 8px 20px rgba(26, 54, 93, 0.15);
+        }
+        
+        /* Profile image */
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 8px solid rgba(254, 240, 138, 0.3);
+            object-fit: cover;
+            margin: 0 auto 25px;
+            display: block;
+            box-shadow: 0 10px 25px rgba(26, 54, 93, 0.15);
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Content boxes */
+        .content-box {
+            background: rgba(254, 249, 195, 0.07);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            border-left: 4px solid rgba(250, 204, 21, 0.3);
+            box-shadow: 0 3px 10px rgba(26, 54, 93, 0.05);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(2px);
+        }
+        
+        /* Very subtle vertical stripes */
+        .content-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 35px,
+                rgba(250, 204, 21, 0.02) 35px,
+                rgba(250, 204, 21, 0.02) 70px
+            );
+            border-radius: 16px;
+            z-index: -1;
+        }
+        
+        .content-box h3 {
+            color: var(--navy);
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.4rem;
+            }
+            
+            .nav-button {
+                padding: 12px 18px;
+                font-size: 1rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .page-content {
+                padding: 25px;
+            }
+            
+            nav {
+                gap: 10px;
+            }
+            
+            .gallery-img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            .page-header {
+                padding: 25px;
+            }
+            
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+        }
+        
+        /* German flag colors accent */
+        .german-flag {
+            height: 6px;
+            background: linear-gradient(to right, 
+                rgba(0, 0, 0, 0.5) 33%, 
+                rgba(239, 68, 68, 0.5) 33%, 
+                rgba(239, 68, 68, 0.5) 66%, 
+                rgba(250, 204, 21, 0.5) 66%);
+            margin: 20px 0;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative elements -->
+    <div class="decoration" style="top: 10%; left: 5%;">
+        <i class="fas fa-star star"></i>
+    </div>
+    <div class="decoration" style="top: 15%; right: 8%;">
+        <i class="fas fa-moon moon"></i>
+    </div>
+    <div class="decoration" style="bottom: 20%; left: 10%;">
+        <i class="fas fa-star star"></i>
+    </div>
+    <div class="decoration" style="bottom: 30%; right: 5%;">
+        <i class="fas fa-moon moon"></i>
+    </div>
+    
+    <!-- Header with navigation -->
+    <header>
+        <div class="header-content">
+            <h1>Hallo, willkommen auf meiner Website!</h1>
+            <p class="subtitle">Alles über mich!</p>
+            
+            <div class="german-flag"></div>
+            
+            <nav>
+                <button class="nav-button active" data-page="page1">
+                    <i class="fas fa-user"></i> Wer bin ich?
+                </button>
+                <button class="nav-button" data-page="page2">
+                    <i class="fas fa-heart"></i> Wichtige Person
+                </button>
+                <button class="nav-button" data-page="page3">
+                    <i class="fas fa-tshirt"></i> Kleidung & Klima
+                </button>
+                <button class="nav-button" data-page="page4">
+                    <i class="fas fa-utensils"></i> Was esse ich?
+                </button>
+                <button class="nav-button" data-page="page5">
+                    <i class="fas fa-home"></i> Wo wohne ich?
+                </button>
+                <button class="nav-button" data-page="page6">
+                    <i class="fas fa-calendar-day"></i> Mein Tag
+                </button>
+                <button class="nav-button" data-page="page7">
+                    <i class="fas fa-film"></i> Popkultur Projekt
+                </button>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Main content area with pages -->
+    <main>
+        <!-- Page 1: Wer bin ich? -->
+        <section id="page1" class="page active">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 1</div>
+                <h2>Wer bin ich?</h2>
+                <p>Wer bin ich?</p>
+            </div>
+            <div class="image-container">
+    <!-- YOUR ACTUAL PHOTO HERE -->
+    <img src="intropic.jpg" alt="Ein Foto von mir" class="profile-img">
+    <p class="image-caption">Das bin ich!</p>
+</div>
+                
+                <div class="content-box">
+                    <h3>Hallo! Ich bin Aicha!</h3>
+                    <p>Ich bin einundzwanzig Jahre alt. Meine Pronomen sind "Sie" und "ihr". Ich wohne in South Oakland und ich komme aus Augusta, Georgia. Ich spreche Englisch und ein bisschen Deutsch. Ich studiere Biowissenschaft. Ich habe einen Bruder. Er heißt Amad. Er ist zehn Jahre alt. Er wohnt in Augusta, GA. Ich habe eine Tante in den USA. Sie heißt Tati. Sie hat eine Tochter, Aissatou. Aissatou ist sechzehn Jahre alt.</p>
+                    <p>Ich mache gerne Keramik. Ich liebe das Fernsehen. Ich spiele gerne Tennis. Ich spiele nicht gern Fußball, weil ich nicht gut spiele. Meine Lieblingsfarben sind Grün und Marineblau. Mein Lieblingsfilm ist Ratatouille, weil ich gern Essen mag.</p>
+                </div>
+                
+                <div class="content-box">
+                    <h3>Lustige Fakten</h3>
+                    <p>Ich habe zwei Enten. Sie heißen Awa und Khadi.</p>
+		    <p>Mein Lieblingstier ist ein Beluga-Wal.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Page 2: Wichtige Person -->
+        <section id="page2" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 1</div>
+                <h2>Wer ist wichtig für mich?</h2>
+                <p>Wo ist meine VIPs???</p>
+            </div>
+            <div class="page-content">
+                <div class="placeholder">
+                    <i class="fas fa-users"></i>
+                    <p>Meine VIPs sind zwei Personen: Madeleine L'Engle und Michael Jackson.</p>
+                    <p><strong>Michael Jackson:</strong> Michael Jackson kann gut singen und gut tanzen. Meine Lieblings-Sänger sind “Earth Song” und “They Don't Really Care About Us.” “Smooth Criminal” ist gut auch. Michael Jackson ist mein VIP im Alter von sechs.</p>
+		    <p><strong>Madeleine L'Engle:</strong> Mein Lieblingsbuch ist „A Wrinkle in Time“. Die Autorin ist Madeleine L'Engle. Sie hat „A Wind in the Door“ und „Many Waters“ geschrieben. Die Bücher sind gut.</p>
+                </div>
+                
+               <div class="image-gallery">
+    <!-- YOUR ACTUAL IMAGES HERE -->
+    <img src="michael.jpg" alt="Michael Jackson" class="gallery-img">
+    <img src="lengle.jpg" alt="Madeleine Lengle" class="gallery-img">
+    <img src="book1.jpg" alt="Wrinkle in Time" class="gallery-img">
+</div>
+<p class="image-caption">(“Madeleine L’Engle”)“Madeleine L’Engle.” Hachette Book Group, 6 Aug. 2019, www.hachettebookgroup.com/contributor/madeleine-lengle/. Accessed 12 Dec. 2025.!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Page 3: Kleidung und Klima -->
+        <section id="page3" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 2</div>
+                <h2>Kleidung und Klima</h2>
+                <p>Was ich trage, wenn es warm und heiß ist?</p>
+            </div>
+            <div class="page-content">
+                <div class="placeholder">
+                    <i class="fas fa-cloud-sun"></i>
+                    <p>Im Winter ist es sehr kalt. Die Temperatur ist zwischen minus sechs Grad Celsius vor ein Grad Celsius. Ich trage eine graue Mantel, einen marineblauen Schal und schwarze Handschuhe. Im Winter trage ich eine schwarze Jacke, wenn es warm ist. Im Sommer ist es heiß. Ich trage ein schwarzes T-Shirt, graue Jeans, eine orangefarbene Tasche und einen Sonnenhut.</p>
+           
+                </div>
+<div class="image-gallery">
+    <!-- YOUR ACTUAL IMAGES HERE -->
+    <img src="winter.jpg" alt="Michael Jackson" class="gallery-img">
+    <img src="sommer.jpg" alt="Madeleine Lengle" class="gallery-img">
+    <img src="jacket.jpg" alt="Madeleine Lengle" class="gallery-img">
+            </div>
+        </section>
+        
+        <!-- Page 4: Was esse ich? -->
+        <section id="page4" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 3</div>
+                <h2>Was esse ich?</h2>
+                <p>Was ich gerne esse/nicht gerne esse.</p>
+            </div>
+            <div class="page-content">
+                <div class="placeholder">
+                    <i class="fas fa-pizza-slice"></i>
+                    <p>Ich esse gern Pommes mit Mayo. Die Pommes sind knusprig und heiß. Ich koche die Pommes in meinem Haus. Ich koche sie im Ofen. Ich kaufe die Pommes im Supermarkt. Ich trinke auch gern Apfelsaft. Ich esse keine Essiggurken und keine Oliven, denn sie schmecken schlecht.
+Ich bin gegen nichts allergisch, aber ich habe Laktoseintoleranz. Ich kann keine Milch trinken. In Pittsburgh esse ich in einem Restaurant. Das Restaurant heißt "Mercurios". Sie haben Pizza. Die Pizza ist sehr gut!</p>
+                </div>
+ <div class="image-gallery">
+   <img src="fries.png" alt="Madeleine Lengle" class="gallery-img">
+   <img src="pizza.jpeg" alt="Madeleine Lengle" class="gallery-img">
+   <img src="olives.png" alt="Madeleine Lengle" class="gallery-img">
+   <img src="pickles.png" alt="Madeleine Lengle" class="gallery-img">
+
+            </div>
+        </section>
+        
+        <!-- Page 5: Wo wohne und lerne ich? -->
+        <section id="page5" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 4</div>
+                <h2>Wo wohne und lerne ich?</h2>
+                <p></p>
+            </div>
+            <div class="page-content">
+                <div class="placeholder">
+                    <i class="fas fa-couch"></i>
+                    <p>Ich wohne in einer Wohnung. Die Wohnung hat zwei Schlafzimmer, eine Küche, ein Wohnzimmer und ein Badezimmer. Ich wohne mit meinem Mitbewohner. Wir haben eine Terrasse. Wir haben keine Waschmaschine. Ich möchte in einem Haus wohnen, weil ein Haus größer  ist. Ich möchte eine Waschmaschine haben. Ich möchte ein Haus mit einem Garten. Das Haus hat fünf Zimmer: ein Arbeitszimmer, ein Wohnzimmer und ein Spielzimmer, und einen Garten. Ich möchte auf dem Land wohnen.</p>
+                     <div class="image-gallery">
+   <img src="haus.png" alt="Madeleine Lengle" class="gallery-img">
+   <img src="living.png" alt="Madeleine Lengle" class="gallery-img">
+   <img src="wasch.png" alt="Madeleine Lengle" class="gallery-img">
+   <img src="garten.png" alt="Madeleine Lengle" class="gallery-img">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Page 6: Mein Tag -->
+        <section id="page6" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 2 & 4</div>
+                <h2>Mein Tag</h2>
+                <p>Ein Tag in meinem Leben</p>
+            </div>
+            <div class="page-content">
+                <div class="placeholder">
+                    <i class="fas fa-clock"></i>
+                    
+<p><strong>Meine Morgenroutine:</strong>
+
+Ich stehe um halb acht auf. Ich sehe fünfzehn Minuten auf meinem Handy. Um Viertel vor acht putze ich mir die Zähne.
+
+Um acht Uhr frühstücke ich. Ich esse Eier und Brot. Ich trinke Apfelsaft.
+
+Dann mache ich mich fertig. Ich trage meinen grauen Mantel, meinen marineblauen Schal und schwarze Handschuhe.
+
+Um halb neun gehe ich zu Fuß zur Schule.
+
+<p><strong>Mein Nachmittag und Abend:</strong>
+
+Der Kurs ist Ende. Ich gehe in die Hillman Library. Ich lerne im Hillman. Montags und freitags gehe ich nach dem Kurs in die Arbeit. Um sieben Uhr abends komme ich nach Hause. Ich nehme ein Bad. Dann koche ich Abendessen. Ich mache Pommes frites im Ofen. Um halb zehn lerne ich. Ich lerne zwei Stunden lang. Um elf Uhr abends putze ich mir die Zähne. Dann mache ich mich fertig für das Bett. Dann schlafe ich.</p>
+              
+                </div>
+            </div>
+        </section>
+        
+        <!-- Page 7: Popkultur Projekt - UPDATED VERSION -->
+<section id="page7" class="page">
+    <div class="page-header">
+        <div class="kapitel">Projekt</div>
+        <h2>Popkultur Projekt</h2>
+        <p>Ich präsentiere mein Popkultur-Projekt, Bernd das Brot! (Oktober 2025)</p>
+    </div>
+    
+    <div class="page-content">
+        <!-- Text section at the top -->
+        <div class="content-box" style="margin-bottom: 40px;">
+            <h3>Bernd das Brot</h3>
+            <p> Bernd das Brot ist eine Figur aus einer Kindersendung in Deutschland.​ Er ist ein Pullman-Brot und hat kurze Arme. Sieht immer mürrisch und traurig aus. Er hat dunkle Augenringe. Bernd, das Brot ist lustig, weil er ehrlich ist. Ich mag den Humor. Er ist seltsam und sehr düster.</p>
+     
+       
+        <!-- Image collage section -->
+        <div class="collage-container">
+            <h3 style="text-align: center; margin-bottom: 30px; color: var(--navy);">Projekt Visualisierung</h3>
+            
+            <div class="collage-grid">
+                <!-- Large rectangle images in a collage layout -->
+                <div class="collage-item collage-item-large">
+                    <div class="collage-image-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Poster oder Hauptbild</p>
+ <img src="meme1.png" alt="brot" class="collage-grid">
+                    </div>
+                </div>
+                
+                <div class="collage-item">
+                    <div class="collage-image-placeholder">
+                        <i class="fas fa-music"></i>
+             
+ <img src="bern1.png" alt="brot" class="collage-image-placeholder">
+                    </div>
+           
+                </div>
+                
+                <div class="collage-item">
+                    <div class="collage-image-placeholder">
+<img src="bern2.png" alt="brot" class="collage-image-placeholder">
+                        <i class="fas fa-film"></i>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Collage styles - Add this to your existing CSS */
+    .collage-container {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .collage-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 25px;
+        margin-bottom: 30px;
+    }
+    
+    .collage-item {
+        background: rgba(254, 249, 195, 0.1);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(26, 54, 93, 0.08);
+        border: 3px solid rgba(254, 240, 138, 0.2);
+        transition: all 0.3s ease;
+        position: relative;
+        height: 280px;
+    }
+    
+    .collage-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(26, 54, 93, 0.15);
+        border-color: rgba(250, 204, 21, 0.4);
+    }
+    
+    .collage-item-large {
+        grid-column: span 2;
+        grid-row: span 2;
+        height: 450px;
+    }
+    
+    .collage-item-wide {
+        grid-column: span 2;
+    }
+    
+    .collage-image-placeholder {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, rgba(99, 179, 237, 0.1), rgba(190, 227, 248, 0.2));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: var(--navy);
+        font-size: 1.1rem;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .collage-item-large .collage-image-placeholder {
+        height: 350px;
+    }
+    
+    .collage-item-wide .collage-image-placeholder {
+        height: 180px;
+    }
+    
+    .collage-image-placeholder i {
+        font-size: 3.5rem;
+        margin-bottom: 15px;
+        color: var(--soft-blue);
+        opacity: 0.8;
+    }
+    
+    .collage-image-placeholder p {
+        font-weight: bold;
+        margin-top: 5px;
+    }
+    
+    .collage-item .image-caption {
+        padding: 15px;
+        text-align: center;
+        font-style: italic;
+        color: var(--light-navy);
+        background: rgba(254, 249, 195, 0.05);
+        margin: 0;
+        font-size: 1rem;
+    }
+    
+    /* Instructions for adding images */
+    .image-instructions {
+        background: rgba(254, 240, 138, 0.15);
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 30px;
+        border: 2px dashed rgba(250, 204, 21, 0.3);
+        font-size: 1rem;
+    }
+    
+    .image-instructions h4 {
+        color: var(--navy);
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+    }
+    
+    /* Responsive adjustments for collage */
+    @media (max-width: 900px) {
+        .collage-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+        
+        .collage-item-large {
+            grid-column: span 1;
+            grid-row: span 1;
+            height: 280px;
+        }
+        
+        .collage-item-large .collage-image-placeholder {
+            height: 200px;
+        }
+        
+        .collage-item-wide {
+            grid-column: span 1;
+        }
+    }
+    
+    @media (max-width: 600px) {
+        .collage-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .collage-item {
+            height: 250px;
+        }
+        
+        .collage-item-large, .collage-item-wide {
+            grid-column: span 1;
+        }
+    }
+</style>
+    </main>
+    
+    <script>
+        // Navigation between pages
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.nav-button');
+            const pages = document.querySelectorAll('.page');
+            
+            // Function to switch pages
+            function switchPage(pageId) {
+                // Hide all pages
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show selected page
+                document.getElementById(pageId).classList.add('active');
+                
+                // Update active button
+                navButtons.forEach(button => {
+                    if (button.getAttribute('data-page') === pageId) {
+                        button.classList.add('active');
+                    } else {
+                        button.classList.remove('active');
+                    }
+                });
+                
+                // Scroll to top of page
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }
+            
+            // Add click events to navigation buttons
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const pageId = this.getAttribute('data-page');
+                    switchPage(pageId);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
