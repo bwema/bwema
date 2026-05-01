@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hallo, willkommen auf meiner Website!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a365d;
+            --light-navy: #2d4a7c;
+            --soft-blue: #63b3ed;
+            --light-blue: #bee3f8;
+            --yellow: rgba(254, 240, 138, 0.15);
+            --light-yellow: rgba(254, 249, 195, 0.1);
+            --dark-yellow: rgba(250, 204, 21, 0.25);
+            --cream: rgba(254, 252, 191, 0.2);
+            --teal: #4fd1c7;
+            --light-teal: #b2f5ea;
+            --text-color: #2d3748;
+            --shadow: 0 4px 12px rgba(26, 54, 93, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text-color);
+            line-height: 1.7;
+            background-image: radial-gradient(var(--light-blue) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--navy), var(--light-navy));
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 8px dotted rgba(254, 240, 138, 0.3);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: white;
+            text-shadow: 3px 3px 0 var(--soft-blue);
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--light-blue);
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        nav {
+            margin-top: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background-color: white;
+            color: var(--navy);
+            border: 2px solid var(--soft-blue);
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-family: 'Georgia', serif;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(26, 54, 93, 0.15);
+            background-color: rgba(254, 249, 195, 0.3);
+            border-color: rgba(250, 204, 21, 0.5);
+        }
+
+        .nav-button.active {
+            background-color: rgba(254, 240, 138, 0.3);
+            color: var(--navy);
+            border-color: rgba(250, 204, 21, 0.5);
+            box-shadow: 0 6px 15px rgba(26, 54, 93, 0.1);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-header {
+            background: rgba(254, 249, 195, 0.08);
+            padding: 30px;
+            border-radius: 25px;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow);
+            border: 5px solid rgba(254, 240, 138, 0.2);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .page-header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 30px,
+                rgba(250, 204, 21, 0.05) 30px,
+                rgba(250, 204, 21, 0.05) 60px
+            );
+            z-index: 1;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+            font-weight: 700;
+        }
+
+        .page-header p,
+        .page-header ul {
+            position: relative;
+            z-index: 2;
+            color: var(--light-navy);
+        }
+
+        .kapitel {
+            font-size: 1.2rem;
+            color: var(--navy);
+            font-weight: bold;
+            background-color: rgba(254, 240, 138, 0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 6px rgba(26, 54, 93, 0.08);
+            border: 1px solid rgba(250, 204, 21, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-content {
+            background: rgba(254, 249, 195, 0.05);
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            border: 3px solid rgba(254, 240, 138, 0.15);
+            margin-bottom: 35px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            position: relative;
+            backdrop-filter: blur(3px);
+        }
+
+        .page-content::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 40px,
+                rgba(250, 204, 21, 0.03) 40px,
+                rgba(250, 204, 21, 0.03) 80px
+            );
+            border-radius: 22px;
+            z-index: 1;
+        }
+
+        .page-content > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .placeholder {
+            text-align: center;
+            padding: 50px 20px;
+            color: #4a5568;
+            font-style: italic;
+            background: rgba(254, 249, 195, 0.1);
+            border-radius: 20px;
+            border: 2px dashed rgba(250, 204, 21, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .placeholder i {
+            font-size: 3.5rem;
+            color: var(--soft-blue);
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .decoration {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        .star {
+            color: rgba(254, 240, 138, 0.5);
+            font-size: 24px;
+        }
+
+        .moon {
+            color: var(--light-blue);
+            font-size: 28px;
+        }
+
+        .cute-img {
+            max-width: 100%;
+            border-radius: 20px;
+            border: 6px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 25px rgba(26, 54, 93, 0.1);
+            margin: 25px 0;
+        }
+
+        .small-img {
+            max-width: 300px;
+        }
+
+        .medium-img {
+            max-width: 500px;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .image-caption {
+            font-style: italic;
+            color: var(--light-navy);
+            margin-top: 10px;
+            font-size: 1.1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 18px;
+            border: 3px solid rgba(254, 240, 138, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(26, 54, 93, 0.08);
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+            border-color: rgba(250, 204, 21, 0.5);
+            box-shadow: 0 8px 20px rgba(26, 54, 93, 0.15);
+        }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 8px solid rgba(254, 240, 138, 0.3);
+            object-fit: cover;
+            margin: 0 auto 25px;
+            display: block;
+            box-shadow: 0 10px 25px rgba(26, 54, 93, 0.15);
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .content-box {
+            background: rgba(254, 249, 195, 0.07);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            border-left: 4px solid rgba(250, 204, 21, 0.3);
+            box-shadow: 0 3px 10px rgba(26, 54, 93, 0.05);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(2px);
+        }
+
+        .content-box::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 35px,
+                rgba(250, 204, 21, 0.02) 35px,
+                rgba(250, 204, 21, 0.02) 70px
+            );
+            border-radius: 16px;
+            z-index: -1;
+        }
+
+        .content-box h3 {
+            color: var(--navy);
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+        }
+
+        .content-box h4 {
+            color: var(--light-navy);
+            margin: 12px 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .helper-note {
+            background: rgba(99, 179, 237, 0.08);
+            border: 1px dashed rgba(45, 74, 124, 0.35);
+            padding: 16px 18px;
+            border-radius: 14px;
+            margin: 16px 0;
+            font-size: 1rem;
+        }
+
+        .helper-note strong {
+            color: var(--navy);
+        }
+
+        .prompt-list {
+            padding-left: 25px;
+            margin-top: 10px;
+        }
+
+        .prompt-list li {
+            margin-bottom: 8px;
+        }
+
+        .travel-grid,
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .mini-card {
+            background: rgba(255,255,255,0.5);
+            border-radius: 18px;
+            padding: 18px;
+            border: 2px solid rgba(254, 240, 138, 0.2);
+            box-shadow: 0 3px 10px rgba(26, 54, 93, 0.05);
+        }
+
+        .mini-card h4 {
+            margin-top: 0;
+        }
+
+        .collage-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .collage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .collage-item {
+            background: rgba(254, 249, 195, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(26, 54, 93, 0.08);
+            border: 3px solid rgba(254, 240, 138, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 280px;
+        }
+
+        .collage-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(26, 54, 93, 0.15);
+            border-color: rgba(250, 204, 21, 0.4);
+        }
+
+        .collage-item-large {
+            grid-column: span 2;
+            grid-row: span 2;
+            min-height: 450px;
+        }
+
+        .collage-image-wrap {
+            width: 100%;
+            min-height: 200px;
+            background: linear-gradient(135deg, rgba(99, 179, 237, 0.1), rgba(190, 227, 248, 0.2));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--navy);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .collage-item-large .collage-image-wrap {
+            min-height: 350px;
+        }
+
+        .collage-image-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .collage-image-wrap i {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: var(--soft-blue);
+            opacity: 0.8;
+        }
+
+        .collage-item .image-caption {
+            padding: 15px;
+            text-align: center;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .collage-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .collage-item-large {
+                grid-column: span 1;
+                grid-row: span 1;
+                min-height: 280px;
+            }
+
+            .collage-item-large .collage-image-wrap {
+                min-height: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.4rem;
+            }
+
+            .nav-button {
+                padding: 12px 18px;
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .page-content {
+                padding: 25px;
+            }
+
+            nav {
+                gap: 10px;
+            }
+
+            .gallery-img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .collage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .nav-button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            h2 {
+                font-size: 1.7rem;
+            }
+
+            .page-header {
+                padding: 25px;
+            }
+
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+        }
+
+        .german-flag {
+            height: 6px;
+            background: linear-gradient(to right,
+                rgba(0, 0, 0, 0.5) 33%,
+                rgba(239, 68, 68, 0.5) 33%,
+                rgba(239, 68, 68, 0.5) 66%,
+                rgba(250, 204, 21, 0.5) 66%);
+            margin: 20px 0;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="decoration" style="top: 10%; left: 5%;">
+        <i class="fas fa-star star"></i>
+    </div>
+    <div class="decoration" style="top: 15%; right: 8%;">
+        <i class="fas fa-moon moon"></i>
+    </div>
+    <div class="decoration" style="bottom: 20%; left: 10%;">
+        <i class="fas fa-star star"></i>
+    </div>
+    <div class="decoration" style="bottom: 30%; right: 5%;">
+        <i class="fas fa-moon moon"></i>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <h1>Hallo, willkommen auf meiner Website!</h1>
+            <p class="subtitle">Alles über mich und mein Deutschprojekt!</p>
+
+            <div class="german-flag"></div>
+
+            <nav>
+                <button class="nav-button active" data-page="page1"><i class="fas fa-user"></i> Wer bin ich?</button>
+                <button class="nav-button" data-page="page2"><i class="fas fa-heart"></i> Wichtige Person</button>
+                <button class="nav-button" data-page="page3"><i class="fas fa-tshirt"></i> Kleidung & Klima</button>
+                <button class="nav-button" data-page="page4"><i class="fas fa-utensils"></i> Was esse ich?</button>
+                <button class="nav-button" data-page="page5"><i class="fas fa-home"></i> Wo wohne ich?</button>
+                <button class="nav-button" data-page="page6"><i class="fas fa-calendar-day"></i> Mein Tag</button>
+                <button class="nav-button" data-page="page7"><i class="fas fa-film"></i> Popkultur Projekt</button>
+
+                <!-- NEW FINAL PROJECT PAGES -->
+                <button class="nav-button" data-page="page8"><i class="fas fa-star"></i> Lieblingsdinge</button>
+                <button class="nav-button" data-page="page9"><i class="fas fa-child"></i> Meine Kindheit</button>
+                <button class="nav-button" data-page="page10"><i class="fas fa-music"></i> Musik</button>
+                <button class="nav-button" data-page="page11"><i class="fas fa-palette"></i> Kunst</button>
+                <button class="nav-button" data-page="page12"><i class="fas fa-map"></i> Eine Reise</button>
+                <button class="nav-button" data-page="page13"><i class="fas fa-lightbulb"></i> Erfindung</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="page1" class="page active">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 1</div>
+                <h2>Wer bin ich?</h2>
+                <p>Wer bin ich?</p>
+            </div>
+
+            <div class="page-content">
+                <div class="image-container">
+                    <img src="intropic.jpg" alt="Ein Foto von mir" class="profile-img">
+                    <p class="image-caption">Das bin ich!</p>
+                </div>
+
+                <div class="content-box">
+                    <h3>Hallo! Ich bin Aicha!</h3>
+                    <p>Ich bin einundzwanzig Jahre alt. Meine Pronomen sind "Sie" und "ihr". Ich wohne in South Oakland und ich komme aus Augusta, Georgia. Ich spreche Englisch und ein bisschen Deutsch. Ich studiere Biowissenschaft. Ich habe einen Bruder. Er heißt Amad. Er ist zehn Jahre alt. Er wohnt in Augusta, GA. Ich habe eine Tante in den USA. Sie heißt Tati. Sie hat eine Tochter, Aissatou. Aissatou ist sechzehn Jahre alt.</p>
+                    <p>Ich mache gerne Keramik. Ich liebe das Fernsehen. Ich spiele gerne Tennis. Ich spiele nicht gern Fußball, weil ich nicht gut spiele. Meine Lieblingsfarben sind Grün und Marineblau. Mein Lieblingsfilm ist Ratatouille, weil ich gern Essen mag.</p>
+                </div>
+
+                <div class="content-box">
+                    <h3>Lustige Fakten</h3>
+                    <p>Ich habe zwei Enten. Sie heißen Awa und Khadi.</p>
+                    <p>Mein Lieblingstier ist ein Beluga-Wal.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page2" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 1</div>
+                <h2>Wer ist wichtig für mich?</h2>
+                <p>Wo sind meine VIPs?</p>
+            </div>
+
+            <div class="page-content">
+                <div class="content-box">
+                    <h3>Meine VIPs</h3>
+                    <p>Meine VIPs sind zwei Personen: Madeleine L'Engle und Michael Jackson.</p>
+                    <p><strong>Michael Jackson:</strong> Michael Jackson kann gut singen und gut tanzen. Meine Lieblingslieder sind „Earth Song“ und „They Don't Really Care About Us“. „Smooth Criminal“ ist auch gut. Michael Jackson ist mein VIP seit meinem sechsten Lebensjahr.</p>
+                    <p><strong>Madeleine L'Engle:</strong> Mein Lieblingsbuch ist „A Wrinkle in Time“. Die Autorin ist Madeleine L'Engle. Sie hat „A Wind in the Door“ und „Many Waters“ geschrieben. Die Bücher sind gut.</p>
+                </div>
+
+                <div class="image-gallery">
+                    <img src="michael.jpg" alt="Michael Jackson" class="gallery-img">
+                    <img src="lengle.jpg" alt="Madeleine L'Engle" class="gallery-img">
+                    <img src="book1.jpg" alt="A Wrinkle in Time" class="gallery-img">
+                </div>
+
+                <p class="image-caption">Quelle für das Foto von Madeleine L'Engle: Hachette Book Group.</p>
+            </div>
+        </section>
+
+        <section id="page3" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 2</div>
+                <h2>Kleidung und Klima</h2>
+                <p>Was trage ich, wenn es kalt, warm oder heiß ist?</p>
+            </div>
+
+            <div class="page-content">
+                <div class="content-box">
+                    <h3>Mein Wetter und meine Kleidung</h3>
+                    <p>Im Winter ist es sehr kalt. Die Temperatur ist zwischen minus sechs Grad Celsius und ein Grad Celsius. Ich trage einen grauen Mantel, einen marineblauen Schal und schwarze Handschuhe. Wenn es wärmer ist, trage ich eine schwarze Jacke. Im Sommer ist es heiß. Ich trage ein schwarzes T-Shirt, graue Jeans, eine orangefarbene Tasche und einen Sonnenhut.</p>
+                </div>
+
+                <div class="image-gallery">
+                    <img src="winter.jpg" alt="Winterkleidung" class="gallery-img">
+                    <img src="sommer.jpg" alt="Sommerkleidung" class="gallery-img">
+                    <img src="jacket.jpg" alt="Jacke" class="gallery-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="page4" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 3</div>
+                <h2>Was esse ich?</h2>
+                <p>Was esse ich gern und was esse ich nicht gern?</p>
+            </div>
+
+            <div class="page-content">
+                <div class="content-box">
+                    <h3>Mein Essen</h3>
+                    <p>Ich esse gern Pommes mit Mayo. Die Pommes sind knusprig und heiß. Ich koche die Pommes zu Hause im Ofen. Ich kaufe die Pommes im Supermarkt. Ich trinke auch gern Apfelsaft. Ich esse keine Essiggurken und keine Oliven, denn sie schmecken schlecht. Ich bin gegen nichts allergisch, aber ich habe Laktoseintoleranz. Ich kann keine Milch trinken. In Pittsburgh esse ich gern im Restaurant „Mercurios“. Dort gibt es sehr gute Pizza.</p>
+                </div>
+
+                <div class="image-gallery">
+                    <img src="fries.png" alt="Pommes" class="gallery-img">
+                    <img src="pizza.jpeg" alt="Pizza" class="gallery-img">
+                    <img src="olives.png" alt="Oliven" class="gallery-img">
+                    <img src="pickles.png" alt="Essiggurken" class="gallery-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="page5" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 4</div>
+                <h2>Wo wohne und lerne ich?</h2>
+                <p>Mein Zuhause und mein Wunschhaus</p>
+            </div>
+
+            <div class="page-content">
+                <div class="content-box">
+                    <h3>Meine Wohnung</h3>
+                    <p>Ich wohne in einer Wohnung. Die Wohnung hat zwei Schlafzimmer, eine Küche, ein Wohnzimmer und ein Badezimmer. Ich wohne mit meinem Mitbewohner. Wir haben eine Terrasse. Wir haben keine Waschmaschine. Ich möchte in einem Haus wohnen, weil ein Haus größer ist. Ich möchte eine Waschmaschine und einen Garten haben. Mein Traumhaus hat fünf Zimmer, zum Beispiel ein Arbeitszimmer, ein Wohnzimmer und ein Spielzimmer.</p>
+                </div>
+
+                <div class="image-gallery">
+                    <img src="haus.png" alt="Haus" class="gallery-img">
+                    <img src="living.png" alt="Wohnzimmer" class="gallery-img">
+                    <img src="wasch.png" alt="Waschmaschine" class="gallery-img">
+                    <img src="garten.png" alt="Garten" class="gallery-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="page6" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 2 &amp; 4</div>
+                <h2>Mein Tag</h2>
+                <p>Ein Tag in meinem Leben</p>
+            </div>
+
+            <div class="page-content">
+                <div class="content-box">
+                    <h3>Meine Morgenroutine</h3>
+                    <p>Ich stehe um halb acht auf. Ich sehe fünfzehn Minuten lang auf mein Handy. Um Viertel vor acht putze ich mir die Zähne. Um acht Uhr frühstücke ich. Ich esse Eier und Brot. Ich trinke Apfelsaft. Dann mache ich mich fertig. Ich trage meinen grauen Mantel, meinen marineblauen Schal und schwarze Handschuhe. Um halb neun gehe ich zu Fuß zur Schule.</p>
+                </div>
+
+                <div class="content-box">
+                    <h3>Mein Nachmittag und Abend</h3>
+                    <p>Der Kurs ist zu Ende. Ich gehe in die Hillman Library. Dort lerne ich. Montags und freitags gehe ich nach dem Kurs zur Arbeit. Um sieben Uhr abends komme ich nach Hause. Ich nehme ein Bad. Dann koche ich Abendessen. Ich mache Pommes frites im Ofen. Um halb zehn lerne ich noch zwei Stunden lang. Um elf Uhr abends putze ich mir die Zähne. Dann mache ich mich fertig fürs Bett und schlafe.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page7" class="page">
+            <div class="page-header">
+                <div class="kapitel">Projekt</div>
+                <h2>Popkultur Projekt</h2>
+                <p>Ich präsentiere mein Popkultur-Projekt: Bernd das Brot</p>
+            </div>
+
+            <div class="page-content">
+                <div class="content-box">
+                    <h3>Bernd das Brot</h3>
+                    <p>Bernd das Brot ist eine Figur aus einer Kindersendung in Deutschland. Er ist ein Pullman-Brot und hat kurze Arme. Er sieht immer mürrisch und traurig aus. Er hat dunkle Augenringe. Bernd das Brot ist lustig, weil er ehrlich ist. Ich mag den Humor. Er ist seltsam und sehr düster.</p>
+                </div>
+
+                <div class="collage-container">
+                    <h3 style="text-align:center; margin-bottom: 30px; color: var(--navy);">Projekt Visualisierung</h3>
+                    <div class="collage-grid">
+                        <div class="collage-item collage-item-large">
+                            <div class="collage-image-wrap">
+                                <img src="meme1.png" alt="Bernd das Brot Hauptbild">
+                            </div>
+                            <p class="image-caption">Hauptbild oder Meme</p>
+                        </div>
+
+                        <div class="collage-item">
+                            <div class="collage-image-wrap">
+                                <img src="bern1.png" alt="Bernd das Brot Bild 1">
+                            </div>
+                            <p class="image-caption">Bild 1</p>
+                        </div>
+
+                        <div class="collage-item">
+                            <div class="collage-image-wrap">
+                                <img src="bern2.png" alt="Bernd das Brot Bild 2">
+                            </div>
+                            <p class="image-caption">Bild 2</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================= -->
+        <!-- NEW FINAL PROJECT PAGES -->
+        <!-- ========================= -->
+
+        <section id="page8" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 5</div>
+                <h2>Meine Lieblingsdinge</h2>
+                <p>Dinge, die wichtig für meinen Alltag sind</p>
+            </div>
+            <div class="page-content">
+                <div class="image-container">
+                    <img src="lieblingsdinge.jpg" alt="Meine Lieblingsdinge: Handy, Chapstick, Brille, Decke und Wasserflasche" class="cute-img medium-img">
+                    <p class="image-caption">Meine fünf Lieblingsdinge</p>
+                </div>
+                <div class="content-box">
+                    <h3>Fünf Dinge, die ich mag</h3>
+                    <p>Ich habe fünf Lieblingsdinge: mein Handy, mein Chapstick, meine Brille, meine Decke und meine Wasserflasche. Mein Handy ist aus Metall und Glas. Ich mag mein Handy, weil es gut für Kommunikation ist. Mein Chapstick ist aus Wachs und Öl. Ich mag meinen Chapstick, weil er gut für meine Lippen ist. Meine Brille ist aus Plastik. Ich mag meine Brille, weil ich gut sehen kann. Meine Decke ist aus Wolle. Ich mag meine Decke, weil sie warm ist. Meine Wasserflasche ist aus Glas und Silikon. Ich mag meine Wasserflasche, weil ich Wasser und Tee trinken kann.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page9" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 6</div>
+                <h2>Meine Kindheit</h2>
+                <p>Meine Heimatstadt, meine Schule und meine Hobbys</p>
+            </div>
+            <div class="page-content">
+                <div class="content-box">
+                    <h3>Als ich ein Kind war</h3>
+                    <p>Meine Heimatstadt ist Augusta in Georgia. Ich habe gern Tennis gespielt. Ich habe gern gelesen, zum Beispiel das Buch <em>Strawberry Cheesecake</em>. Ich habe Oliven nicht gern gegessen. Ich habe gern Horrorfilme gesehen. Meine Schule war groß und hatte viele Schüler. Ich hatte zwei Freunde. Sie heißen Kyla und Aubrey. Wir haben zusammen Tennis gespielt.</p>
+                </div>
+                <div class="content-box">
+                    <h3>Meine Kindheit in kurzen Sätzen</h3>
+                    <p>Ich habe gern gelesen und Tennis gespielt. Meine Freunde waren wichtig für mich. Meine Schule war groß, aber ich hatte gute Freunde.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page10" class="page">
+            <div class="page-header">
+                <div class="kapitel">Musik</div>
+                <h2>Musik</h2>
+                <p>Was ich gern höre und wann ich Musik höre</p>
+            </div>
+            <div class="page-content">
+                <div class="content-box">
+                    <h3>Meine Musik</h3>
+                    <p>In meiner Freizeit höre ich gern Musik. Ich höre jeden Tag Musik in meiner Wohnung. Musik ist entspannend und macht mich glücklich. Ich höre gern Tupac, Eminem, Rihanna und Britney Spears. Mein Lieblingslied ist „Stereo Hearts“ von Gym Class Heroes. Ich spiele Ukulele.</p>
+                    <p>Ich habe Rammstein gehört. Das Lied „Sonne“ ist gut, aber ich mag Rammstein nicht, weil es nicht mein Stil ist. Ich höre auch klassische Musik, zum Beispiel Beethoven und Mozart. Ich höre klassische Musik beim Lernen. Das hilft mir.</p>
+                </div>
+                <div class="music-grid">
+                    <div class="mini-card"><h4>Rammstein</h4><p>Rammstein ist eine deutsche Gruppe. Das Lied „Sonne“ ist gut, aber die Musik ist laut. Ich mag Rammstein nicht so gern, weil es nicht mein Stil ist.</p></div>
+                    <div class="mini-card"><h4>Beethoven</h4><p>Beethoven ist ein Komponist. Seine Musik ist klassisch und sehr bekannt. Ich höre klassische Musik gern beim Lernen.</p></div>
+                    <div class="mini-card"><h4>Mozart</h4><p>Mozart ist auch ein Komponist. Seine Musik ist ruhig und schön. Ich finde Mozart ruhiger als Rammstein.</p></div>
+                </div>
+                <div class="content-box">
+                    <h3>Meine Meinung</h3>
+                    <p>Tupac und Eminem sind anders als klassische Musik. Britney Spears ist sehr populär. Rammstein ist lauter als Mozart und Beethoven. Mozart und Beethoven sind besser zum Lernen, weil die Musik ruhiger ist.</p>
+                </div>
+                <div class="image-gallery">
+                    <img src="tupac.jpg" alt="Tupac Albumcover" class="gallery-img">
+                    <img src="eminem.jpg" alt="Eminem Albumcover" class="gallery-img">
+                    <img src="britney.jpg" alt="Britney Spears Albumcover" class="gallery-img">
+                    <img src="stereohearts.jpg" alt="Stereo Hearts Albumcover" class="gallery-img">
+                </div>
+                <p class="image-caption">Meine Lieblingsmusik und Künstler</p>
+            </div>
+        </section>
+
+        <section id="page11" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kunst</div>
+                <h2>Kunst</h2>
+                <p>Mein Lieblingsgemälde von Gustav Klimt</p>
+            </div>
+            <div class="page-content">
+                <div class="image-container">
+                    <img src="gustav_klimt.jpg" alt="Der Kuss von Gustav Klimt" class="cute-img medium-img">
+                    <p class="image-caption">„Der Kuss“ von Gustav Klimt</p>
+                </div>
+                <div class="content-box">
+                    <h3>Der Kuss</h3>
+                    <p>Das Bild heißt „Der Kuss“ von Gustav Klimt. Auf dem Bild sind zwei Personen, ein Mann und eine Frau. Der Mann und die Frau tragen goldene Kleidung. Der Mann umarmt die Frau und küsst sie. Die Frau hat rote Haare und rote Lippen. Ihre Augen sind geschlossen. Der Mann hat dunkle Haare. Es gibt viel Gold im Bild. Ich mag das Bild, weil es sehr schön ist.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page12" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 7</div>
+                <h2>Eine Reise</h2>
+                <p>Mein Reiseführer für Graz in Österreich</p>
+            </div>
+            <div class="page-content">
+                <div class="content-box">
+                    <h3>Meine Stadt: Graz</h3>
+                    <p>Ich habe Graz in Österreich besucht. Ich bin im Sommer gereist. Ich bin mit dem Flugzeug gereist. Ich bin mit Freunden gereist. In Graz gibt es viele schöne Gebäude. Die Stadt liegt an der Mur. Es gibt eine Straßenbahn und viele Fahrräder. Man kann durch die Stadt gehen und die Architektur sehen. Ich habe Backhendl und Brettljause gegessen. Ich habe die Stadt sehr interessant gefunden.</p>
+                </div>
+                <div class="travel-grid">
+                    <div class="mini-card"><h4>Schlossberg und Uhrturm</h4><p>Man kann auf den Schlossberg gehen und den Uhrturm sehen. Von dort sieht man die Stadt von oben.</p></div>
+                    <div class="mini-card"><h4>Hauptplatz</h4><p>Der Hauptplatz ist im Zentrum. Man kann dort spazieren gehen und schöne Gebäude sehen.</p></div>
+                    <div class="mini-card"><h4>Murinsel</h4><p>Die Murinsel liegt in der Mur. Man kann dort Fotos machen und die moderne Architektur sehen.</p></div>
+                    <div class="mini-card"><h4>Kunsthaus Graz</h4><p>Das Kunsthaus ist ein modernes Museum. Man kann dort Kunst sehen.</p></div>
+                    <div class="mini-card"><h4>Schloss Eggenberg</h4><p>Schloss Eggenberg ist sehr schön. Man kann das Schloss besuchen und durch den Garten gehen.</p></div>
+                </div>
+                <div class="content-box">
+                    <h3>Essen und Trinken</h3>
+                    <p>In Graz kann man Backhendl und Brettljause essen. Man kann auch Kaffee trinken und Apfelstrudel essen.</p>
+                </div>
+                <div class="image-gallery">
+                    <img src="graz1.jpg" alt="Ein Gebäude in Graz" class="gallery-img">
+                    <img src="graz2.jpg" alt="Eine Kirche in Graz" class="gallery-img">
+                    <img src="graz3.jpg" alt="Die Stadt Graz von oben" class="gallery-img">
+                    <img src="kunsthaus.jpg" alt="Kunsthaus Graz" class="gallery-img">
+                    <img src="schloss_egg.jpg" alt="Schloss Eggenberg" class="gallery-img">
+                </div>
+                <p class="image-caption">Sehenswürdigkeiten in Graz, Österreich</p>
+                <div class="content-box">
+                    <h3>Sehenswürdigkeiten in Graz</h3>
+                    <p>Das Kunsthaus Graz ist modern und interessant. Schloss Eggenberg ist sehr groß und schön. Die Kirchen in Graz sind alt und beeindruckend.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page13" class="page">
+            <div class="page-header">
+                <div class="kapitel">Kapitel 8</div>
+                <h2>Eine Erfindung für die Zukunft</h2>
+                <p>Meine kreative Zukunftsidee</p>
+            </div>
+            <div class="page-content">
+                <div class="content-box">
+                    <h3>Meine Erfindung</h3>
+                    <p>Meine Erfindung ist eine intelligente Brille. Die Brille wird modern sein. Die Brille hat GPS. Ich werde einen Ort eingeben. Die Brille wird mir den Weg zeigen. Ich kann den Weg in Echtzeit sehen. Die Brille ist unzerstörbar. Die Brille ist sehr praktisch. Ich mag meine Erfindung, weil sie mir hilft.</p>
+                </div>
+                <div class="content-box">
+                    <h3>Werbung</h3>
+                    <p>Kaufe die GPS-Brille! Sie hat GPS, Internet und Musik. Sie zeigt Nachrichten und hat eine Karte. Die Brille ist leicht, bequem, schnell und sehr modern.</p>
+                </div>
+                <div class="image-container">
+                    <img src="brille_ad.jpg" alt="Werbung für meine GPS-Brille" class="cute-img medium-img">
+                    <p class="image-caption">Meine GPS-Brille</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.nav-button');
+            const pages = document.querySelectorAll('.page');
+
+            function switchPage(pageId) {
+                pages.forEach(page => page.classList.remove('active'));
+
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+
+                navButtons.forEach(button => {
+                    button.classList.toggle('active', button.getAttribute('data-page') === pageId);
+                });
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    switchPage(this.getAttribute('data-page'));
+                });
+            });
+        });
+    </script>
+</body>
+</html>
