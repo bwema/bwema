@@ -38,15 +38,23 @@
         }
 
         header {
-            background: linear-gradient(135deg, var(--navy), var(--light-navy));
-            padding: 30px 0;
-            text-align: center;
-            border-bottom: 8px dotted rgba(254, 240, 138, 0.3);
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    background: linear-gradient(135deg, var(--navy), var(--light-navy));
+    padding: 30px 0 15px;
+    text-align: center;
+    border-bottom: 8px dotted rgba(254, 240, 138, 0.3);
+    box-shadow: var(--shadow);
+}
+       nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: linear-gradient(135deg, var(--navy), var(--light-navy));
+    padding: 12px;
+
+    margin-top: 0; /* 🔥 change this */
+    border-radius: 0 0 20px 20px;
+}
 
         .header-content {
             max-width: 1200px;
